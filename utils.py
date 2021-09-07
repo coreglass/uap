@@ -260,19 +260,19 @@ def evaluate(model, loader, uap = None, n = 5, a_0 = 0, b_0=0):
                 #print(l)
                 #perturbed1 =perturbed.cpu().numpy()
                 #print(perturbed1)
-                s=s+1
-                path= "D:/ae/uap-"+str(a_0)+"-"+str(b_0)+"/%s"%l
-                #print(path)
-                #path = "E:/desk/RDH/ae/%s"%l
-                #ae_save_path = "E:/desk/org1/"+"%s"%l+"/"+"%s"%l+"_"+"%s.png"%(s)
-                ae_save_path = path+"/"+"%s"%l+"_"+"%s.png"%(s)
-                folder = os.path.exists(path)
-                if not folder:                   #判断是否存在文件夹如果不存在则创建为文件夹
-                    os.makedirs(path) 
-                    print("creat success")        #makedirs 创建文件时如果路径不存在会创建这个路径
-                else:
-                    print("success")
-                save_image4(ae_save_path,perturbed)
+                # s=s+1
+                # path= "D:/ae/uap-"+str(a_0)+"-"+str(b_0)+"/%s"%l
+                # #print(path)
+                # #path = "E:/desk/RDH/ae/%s"%l
+                # #ae_save_path = "E:/desk/org1/"+"%s"%l+"/"+"%s"%l+"_"+"%s.png"%(s)
+                # ae_save_path = path+"/"+"%s"%l+"_"+"%s.png"%(s)
+                # folder = os.path.exists(path)
+                # if not folder:                   #判断是否存在文件夹如果不存在则创建为文件夹
+                #     os.makedirs(path) 
+                #     print("creat success")        #makedirs 创建文件时如果路径不存在会创建这个路径
+                # else:
+                #     print("success")
+                # save_image4(ae_save_path,perturbed)
                 # save_image4(ae_save_path,x_val)
 
                 #a = perturbed - x_val
