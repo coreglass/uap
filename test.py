@@ -30,7 +30,7 @@ def test(uap_path,a_0,b_0):
 
 
     dir_data = 'F:/org/'
-    dir_data1 = "E:/desk/RDH/zaimi/"
+    # dir_data1 = "E:/desk/RDH/zaimi/"
     dir_uap = './uaps/imagenet/'
     loader = loader_imgnet(dir_data, 10000, 1) # evaluate on 10,000 validation images
 
@@ -62,8 +62,8 @@ def test(uap_path,a_0,b_0):
 #     for a in range(0,169,14):
 #         uap_path ="F:/coding/CW (2)/uap/results/uap-"+str(a)+"-"+str(b)+".png"
 #         test(uap_path,a_0=a,b_0=b)
-for b in range(0,169,14):
-    for a in range(0,169,14):
-        uap_path ="F:/coding/CW (2)/uap/results/uap-"+str(a)+"-"+str(b)+".png"
-        test(uap_path,a_0=a,b_0=b)
+# for b in range(0,169,14):
+#     for a in range(0,169,14):
+#         uap_path ="F:/coding/CW (2)/uap/results/uap-"+str(a)+"-"+str(b)+".png"
+#         test(uap_path,a_0=a,b_0=b)
 
