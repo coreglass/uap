@@ -42,77 +42,86 @@ def test():
             #transforms.CenterCrop(224),
             transforms.ToTensor()
         ])
-
     
+    uap = torch.load(dir_uap + 'sgd-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap1.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
+
+    uap = torch.load(dir_uap + 'sgd-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap2.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
+
     uap = torch.load(dir_uap + 'sgd-resnet50-eps10.pth').cuda() #生成的对抗扰动
     save_image3("uap3.png",uap)
     _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
     print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt611-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap4.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt611-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap4.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt611-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap5.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt611-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap5.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt611-resnet50-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap6.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt611-resnet50-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap6.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt734-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap7.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt734-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap7.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt734-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap8.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt734-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap8.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt734-resnet50-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap9.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt734-resnet50-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap9.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt854-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap10.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt854-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap10.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt854-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap11.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt854-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap11.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt854-resnet50-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap12.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt854-resnet50-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap12.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt859-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap13.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt859-resnet50_SIN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap13.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt859-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap14.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt859-resnet50_SIN-IN-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap14.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-tgt859-resnet50-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap15.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-tgt859-resnet50-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap15.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
-    # uap = torch.load(dir_uap + 'sgd-vgg16-eps10.pth').cuda() #生成的对抗扰动
-    # save_image3("uap16.png",uap)
-    # _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
-    # print(sum(outputs == labels) / len(labels))
+    uap = torch.load(dir_uap + 'sgd-vgg16-eps10.pth').cuda() #生成的对抗扰动
+    save_image3("uap16.png",uap)
+    _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap = uap)
+    print(sum(outputs == labels) / len(labels))
 
     # #plt.imshow(uap_pr)# 显示tensor
     # uap1_max = torch.max(uap1)

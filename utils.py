@@ -86,7 +86,7 @@ def model_imgnet(model_name):
             'resnet50_SIN-IN': 'https://bitbucket.org/robert_geirhos/texture-vs-shape-pretrained-models/raw/60b770e128fffcbd8562a3ab3546c1a735432d03/resnet50_train_45_epochs_combined_IN_SF-2a0d100e.pth.tar',
             'resnet50_SIN-2IN': 'https://bitbucket.org/robert_geirhos/texture-vs-shape-pretrained-models/raw/60b770e128fffcbd8562a3ab3546c1a735432d03/resnet50_finetune_60_epochs_lr_decay_after_30_start_resnet50_train_45_epochs_combined_IN_SF-ca06340c.pth.tar',
         }
-        model = torchvision.models.resnet50(pretrained=False)
+        model = torchvision.models.vgg16(pretrained=False)
         model = nn.DataParallel(model).cuda()
         checkpoint = model_zoo.load_url(model_urls[model_name])
         model.load_state_dict(checkpoint['state_dict'])
@@ -205,7 +205,10 @@ def loader_imgnet(dir_data, nb_images = 10000, batch_size = 8, img_size = 224):
     
     return dataloader
 
-
+def l2_distance(images, adv_images):
+    delta = (adv_images - images).view(len(images), -1)
+    l2 = torch.norm(delta, p=2, dim=1).mean()
+    return l2
 # dataloader for CIFAR-10
 def loader_cifar(dir_data, train = False, batch_size = 250):
     transform_test = transforms.Compose([
@@ -223,7 +226,7 @@ def loader_cifar(dir_data, train = False, batch_size = 250):
 
 # Evaluate model on data with or without UAP
 # Assumes data range is bounded by [0, 1]
-def evaluate(model, loader, uap = None, n = 5, a_0 = 0, b_0=0):
+def evaluate(model, loader, uap = None, n = 5):
     '''
     OUTPUT
     top         top n predicted labels (default n = 5)
@@ -239,6 +242,8 @@ def evaluate(model, loader, uap = None, n = 5, a_0 = 0, b_0=0):
     model.to(device) 
     model.eval()
     s=10000
+    p=0
+    count=0
     with open("imagenet_class_index.json",'r') as load_f:
         labels_dict = json.load(load_f)
     if uap is not None:
@@ -256,7 +261,12 @@ def evaluate(model, loader, uap = None, n = 5, a_0 = 0, b_0=0):
             else:
                 
                 perturbed = torch.clamp((x_val + uap).cuda(), 0, 1).cuda() # clamp to [0, 1]
+                count = count+1
                 l = labels_dict["%d"%f][0]
+                l2 = l2_distance(x_val, perturbed)
+                L2 = float(l2.cpu().numpy())
+                p = p+L2
+                # print(L2)
                 #print(l)
                 #perturbed1 =perturbed.cpu().numpy()
                 #print(perturbed1)
@@ -282,7 +292,7 @@ def evaluate(model, loader, uap = None, n = 5, a_0 = 0, b_0=0):
                 
             probs.append(out.cpu().numpy())
             labels.append(y_val.cpu().numpy())
-            
+        print(p/count)
     # Convert batches to single numpy arrays    
     probs = np.stack([p for l in probs for p in l])
     labels = np.array([t for l in labels for t in l])
@@ -293,7 +303,7 @@ def evaluate(model, loader, uap = None, n = 5, a_0 = 0, b_0=0):
     top1acc = top[range(len(top)), np.argmax(top_probs, axis = 1)] == labels
     top5acc = [labels[i] in row for i, row in enumerate(top)]
     outputs = top[range(len(top)), np.argmax(top_probs, axis = 1)]
-        
+    
     return top, top_probs, top1acc, top5acc, outputs, labels
 
 def tensor_to_PIL(tensor):
