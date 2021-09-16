@@ -292,7 +292,7 @@ def evaluate(model, loader, uap = None, n = 5):
                 
             probs.append(out.cpu().numpy())
             labels.append(y_val.cpu().numpy())
-        print(p/count)
+        #print(p/count)
     # Convert batches to single numpy arrays    
     probs = np.stack([p for l in probs for p in l])
     labels = np.array([t for l in labels for t in l])
