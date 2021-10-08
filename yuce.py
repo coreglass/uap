@@ -22,7 +22,7 @@ def test(dir_data):
     # evaluate on 10,000 validation images
     loader = loader_imgnet(dir_data, 10000, 1)
     # load model
-    model = model_imgnet('resnet50')
+    model = model_imgnet('alexnet')
 
     _, _, top1acc, top5acc, outputs, labels = evaluate(model, loader, uap=None)
     print(sum(outputs == labels) / len(labels))
@@ -34,7 +34,10 @@ def test(dir_data):
 
 
 print("---------------------------------------------------------")
-for b in range(0, 169, 14):
-    for a in range(0, 169, 14):
-        zaimi_dir_data = "D:/jiazao/uap-"+str(a)+"-"+str(b)+"/"
-        test(zaimi_dir_data)
+# for b in range(0, 169, 14):
+#     for a in range(0, 169, 14):
+#         zaimi_dir_data = "D:/zaimi/uap-"+str(a)+"-"+str(b)+"/"
+#         test(zaimi_dir_data)
+
+zaimi_dir_data = "D:/zaimi/uap-154-98/"
+test(zaimi_dir_data)
